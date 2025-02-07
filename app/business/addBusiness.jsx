@@ -329,7 +329,7 @@ export default function AddBusiness() {
               style={{ marginTop: 10 }}
             >
               <Text style={{ color: "blue", textAlign: "center" }}>Close</Text>
-              <Text style={{ color: "blue", textAlign: "center" }}>Back</Text>
+              <Text style={{ color: "blue", textAlign: "center" }}>Cancel</Text>
             </TouchableOpacity>
           </View>
         </View>

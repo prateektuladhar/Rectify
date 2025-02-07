@@ -58,7 +58,6 @@ export default function MenuList() {
     },
   ];
 
-  // Add Dashboard only if user is an admin
   if (userRole === "admin") {
     menulist.push({
       id: 5,
