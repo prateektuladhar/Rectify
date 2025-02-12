@@ -1,13 +1,14 @@
 {
   "expo": {
     "name": "Rentify",
-    "slug": "Rentify",
+    "slug": "rentify",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/rectify.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "platforms": ["ios", "android"],
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
@@ -24,6 +25,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/rectify.png",
         "backgroundColor": "#ffffff"
+
       },
       "package": "com.prateek.rectify"
     },
@@ -45,7 +47,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "ce831ed1-a78c-448b-8147-2f17504da103"
+        "projectId": "ffdad094-e972-4397-83fb-463b8f682b85"
       }
     }
   }

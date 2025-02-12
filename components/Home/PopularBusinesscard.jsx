@@ -41,7 +41,7 @@ export default function PopularBusinessCard({ business }) {
           {/* Ratings */}
           <View style={styles.rating}>
             <Image
-              source={require("./../../assets/images/star.png")}
+              source={require("@assets/images/star.png")}
               style={styles.starIcon}
             />
             <Text style={styles.ratingText}>

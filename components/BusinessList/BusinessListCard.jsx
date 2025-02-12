@@ -26,7 +26,7 @@ export default function BusinessListCard({ business }) {
         <Text style={styles.address}>{business.address}</Text>
         <View style={styles.ratingContainer}>
           <Image
-            source={require("./../../assets/images/star.png")}
+            source={require("@assets/images/star.png")}
             style={styles.starIcon}
           />
           <Text style={styles.ratingText}>{averageRating.toFixed(1)}</Text>

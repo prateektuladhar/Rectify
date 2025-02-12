@@ -1,7 +1,7 @@
 import { Text, View, FlatList, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import { collection, getDocs, query } from "firebase/firestore";
-import { db } from "@/utils/FirebaseConfig";
+import { db } from "../../utils/FirebaseConfig";
 import CategoryItem from "./CategoryItem";
 import { useRouter } from "expo-router";
 

@@ -1,13 +1,18 @@
-import { View, ScrollView, RefreshControl } from "react-native";
+import {
+  View,
+  ScrollView,
+  RefreshControl,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState, useEffect, useCallback } from "react";
-import Header from "@/components/Home/Header";
-import Slider from "@/components/Home/Slider";
-import Category from "@/components/Home/Category";
-import PopularBusinessList from "@/components/Home/PopularBusinessList";
+import Header from "@components/Home/Header";
+import Slider from "@components/Home/Slider";
+import Category from "@components/Home/Category";
+import PopularBusinessList from "@components/Home/PopularBusinessList";
 import { useUser } from "@clerk/clerk-expo";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { getDatabase, ref, set } from "firebase/database";
-import { db, auth } from "@/utils/FirebaseConfig";
+import { db, auth } from "@utils/FirebaseConfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 /** Save user to Firestore **/
@@ -29,7 +34,7 @@ const saveUserToFirestore = async (user) => {
       createdAt: userSnap.exists()
         ? existingData.createdAt
         : user?.createdAt || Date.now(),
-      role: userSnap.exists() ? existingData.role : "client", // Only set role if new
+      role: userSnap.exists() ? existingData.role : "client",
     };
 
     await setDoc(userRef, userData, { merge: true });
@@ -61,12 +66,21 @@ export default function Home() {
   const [popularBusinessList, setPopularBusinessList] = useState([]);
 
   useEffect(() => {
-    GetBusinessList();
-  }, []);
-
+    const fetchData = async () => {
+      await GetBusinessList();
+  
+      if (isLoaded && isSignedIn && user) {
+        console.log("🔄 Storing user data...");
+        saveUserToFirestore(user);
+        storeUserToRealtimeDB(user);
+      }
+    };
+  
+    fetchData();
+  }, [isLoaded, isSignedIn, user]);
+  
+  
   const GetBusinessList = async () => {
-    setPopularBusinessList([]);
-
     try {
       const q = query(
         collection(db, "List"),
@@ -100,19 +114,15 @@ export default function Home() {
     }
   }, []);
 
-  /** Prevent accessing user data before Clerk has loaded **/
+
   if (!isLoaded) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
-  /** Effect to store user data after sign-in **/
-  useEffect(() => {
-    if (isSignedIn && user) {
-      console.log("🔄 Storing user data...");
-      saveUserToFirestore(user);
-      storeUserToRealtimeDB(user);
-    }
-  }, [isSignedIn, user]);
 
   return (
     <ScrollView

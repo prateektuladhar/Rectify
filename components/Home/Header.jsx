@@ -1,14 +1,6 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useUser } from "@clerk/clerk-expo";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 
 export default function Header() {

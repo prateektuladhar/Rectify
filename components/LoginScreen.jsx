@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import * as WebBrowser from "expo-web-browser";
-import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
+import { useWarmUpBrowser } from "@hooks/useWarmUpBrowser";
 import { useOAuth, useSignIn } from "@clerk/clerk-expo";
 import * as Linking from "expo-linking";
 import { useUser } from "@clerk/clerk-expo";
@@ -39,7 +39,7 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          source={require("@/assets/images/bike.jpg")}
+          source={require("@assets/images/bike.jpg")}
           style={styles.image}
         />
       </View>

@@ -15,26 +15,26 @@ export default function ActionButton({ business }) {
     {
       id: 1,
       name: "Call",
-      icon: require("./../../assets/images/phone-call.png"),
+      icon: require("@assets/images/phone-call.png"),
       url: "tel:" + business?.contact,
     },
     {
       id: 2,
       name: "Location",
-      icon: require("./../../assets/images/map.png"),
+      icon: require("@assets/images/map.png"),
       url:
         "https://www.google.com/maps/search/?api=1&query=" + business?.address,
     },
     {
       id: 3,
       name: "Web",
-      icon: require("./../../assets/images/web.png"),
+      icon: require("@assets/images/web.png"),
       url: business?.website || "https://default-url.com",
     },
     {
       id: 4,
       name: "Share",
-      icon: require("./../../assets/images/share.png"),
+      icon: require("@assets/images/share.png"),
       url: "tel:" + business?.contact, // Update to a URL or message as per actual requirements
     },
   ];

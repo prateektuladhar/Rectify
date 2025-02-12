@@ -3,9 +3,12 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@app/*": ["./app/*"],
+      "@assets/*": ["./assets/*"],
+      "@components/*": ["./components/*"],
+      "@constants/*": ["./constants/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@utils/*": ["./utils/*"]
     }
   },
   "include": [
@@ -13,5 +16,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/_layout.jsx", "app/(tabs)/_layout.jsx", "app/business/addBusiness.jsx"  ]
+  ]
 }

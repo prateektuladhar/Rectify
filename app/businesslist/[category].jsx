@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 // import { collection, query } from "firebase/firestore";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../../utils/FirebaseConfig";
+import { db } from "@utils/FirebaseConfig";
 import { FlatList } from "react-native";
-import BusinessListCard from "@/components/BusinessList/BusinessListCard";
+import BusinessListCard from "@components/BusinessList/BusinessListCard";
 
 export default function BusinesslistByCategory() {
   const navigation = useNavigation();

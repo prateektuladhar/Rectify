@@ -4,6 +4,7 @@ import { useUser } from "@clerk/clerk-expo";
 
 export default function UserIntro() {
   const { user } = useUser();
+  if (!user) return
   return (
     <View
       style={{

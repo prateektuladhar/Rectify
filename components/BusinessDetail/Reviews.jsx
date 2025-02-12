@@ -12,7 +12,7 @@ import {
 import { Rating } from "react-native-ratings";
 import { TouchableOpacity } from "react-native";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { db } from "../../utils/FirebaseConfig";
+import { db } from "@utils/FirebaseConfig";
 import { useUser } from "@clerk/clerk-expo";
 
 export default function Reviews({ business }) {

@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import { Share } from "react-native";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/utils/FirebaseConfig";
+import { db } from "@utils/FirebaseConfig";
 
 export default function MenuList() {
   const { signOut } = useAuth();
@@ -35,25 +35,25 @@ export default function MenuList() {
     {
       id: 1,
       name: "Add Item",
-      icon: require("./../../assets/images/add.png"),
+      icon: require("@assets/images/add.png"),
       path: "/business/addBusiness",
     },
     {
       id: 2,
       name: "My Items",
-      icon: require("./../../assets/images/business-and-trade.png"),
+      icon: require("@assets/images/business-and-trade.png"),
       path: "/business/Mybusiness",
     },
     {
       id: 3,
       name: "Share App",
-      icon: require("./../../assets/images/send.png"),
+      icon: require("@assets/images/send.png"),
       path: "share",
     },
     {
       id: 4,
       name: "Logout",
-      icon: require("./../../assets/images/logout.png"),
+      icon: require("@assets/images/logout.png"),
       path: "logout",
     },
   ];
@@ -62,7 +62,7 @@ export default function MenuList() {
     menulist.push({
       id: 5,
       name: "Dashboard",
-      icon: require("./../../assets/images/logout.png"),
+      icon: require("@assets/images/logout.png"),
       path: "/admin/AdminDashboard",
     });
   }

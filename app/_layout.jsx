@@ -50,7 +50,7 @@ export default function RootLayout() {
   return (
     <ClerkProvider
       tokenCache={tokenCache}
-      publishableKey={process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY} // Ensure the key is set correctly
+      publishableKey={process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY} 
     >
       <SignedIn>
         <Stack screenOptions={{ headerShown: false }}>

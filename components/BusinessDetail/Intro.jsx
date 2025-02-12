@@ -10,7 +10,7 @@ import React, { useState, useEffect } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { doc, deleteDoc, getDoc } from "firebase/firestore";
-import { db } from "./../../utils/FirebaseConfig";
+import { db } from "@utils/FirebaseConfig";
 import { useUser } from "@clerk/clerk-expo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -22,12 +22,18 @@ export default function Intro({ business }) {
   const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     const loadLikedState = async () => {
-      const storedLikedState = await AsyncStorage.getItem(
-        `liked-${business?.id}`
-      );
-      if (storedLikedState !== null) {
-        setLiked(JSON.parse(storedLikedState));
+      try {
+        const storedLikedState = await AsyncStorage.getItem(
+          `liked-${business?.id}`
+        );
+        if (storedLikedState !== null && isMounted) {
+          setLiked(JSON.parse(storedLikedState));
+        }
+      } catch (error) {
+        console.error("❌ Error loading liked state:", error);
       }
     };
 
@@ -38,7 +44,7 @@ export default function Intro({ business }) {
         const userRef = doc(db, "clients", user.id);
         const userSnap = await getDoc(userRef);
 
-        if (userSnap.exists()) {
+        if (userSnap.exists() && isMounted) {
           setUserRole(userSnap.data().role);
         }
       } catch (error) {
@@ -48,15 +54,23 @@ export default function Intro({ business }) {
 
     loadLikedState();
     fetchUserRole();
+
+    return () => {
+      isMounted = false;
+    };
   }, [business?.id, user]);
 
   const toggleHeart = async () => {
-    const newLikedState = !liked;
-    setLiked(newLikedState);
-    await AsyncStorage.setItem(
-      `liked-${business?.id}`,
-      JSON.stringify(newLikedState)
-    );
+    try {
+      const newLikedState = !liked;
+      setLiked(newLikedState);
+      await AsyncStorage.setItem(
+        `liked-${business?.id}`,
+        JSON.stringify(newLikedState)
+      );
+    } catch (error) {
+      console.error("❌ Error updating like state:", error);
+    }
   };
 
   const OnDelete = () => {
@@ -76,21 +90,18 @@ export default function Intro({ business }) {
 
   const deleteBusiness = async () => {
     if (!business?.id) {
-      console.log("Item ID is missing");
+      console.log("❌ Item ID is missing");
       ToastAndroid.show("Error: Item ID is missing!", ToastAndroid.LONG);
       return;
     }
 
     try {
-      console.log("Deleting Item with ID:", business.id);
-
+      console.log("🗑️ Deleting Item with ID:", business.id);
       await deleteDoc(doc(db, "List", business.id));
-
       router.back();
-
-      ToastAndroid.show("Item Deleted!", ToastAndroid.LONG);
+      ToastAndroid.show("✅ Item Deleted!", ToastAndroid.LONG);
     } catch (error) {
-      console.error("Error deleting Item: ", error);
+      console.error("❌ Error deleting Item: ", error);
       ToastAndroid.show("Error deleting Item!", ToastAndroid.LONG);
     }
   };
@@ -101,6 +112,7 @@ export default function Intro({ business }) {
 
   return (
     <View>
+      {/* Navigation & Like Button */}
       <View
         style={{
           position: "absolute",
@@ -124,6 +136,7 @@ export default function Intro({ business }) {
         </TouchableOpacity>
       </View>
 
+      {/* Business Image */}
       <Image
         source={{ uri: business?.imageUrl }}
         style={{
@@ -132,6 +145,7 @@ export default function Intro({ business }) {
         }}
       />
 
+      {/* Business Info & Delete Button */}
       <View
         style={{
           display: "flex",
@@ -173,8 +187,9 @@ export default function Intro({ business }) {
           </Text>
         </View>
 
+        {/* Delete Button */}
         {canDelete && (
-          <TouchableOpacity onPress={() => OnDelete()}>
+          <TouchableOpacity onPress={OnDelete}>
             <Ionicons name="trash" size={24} color="black" />
           </TouchableOpacity>
         )}

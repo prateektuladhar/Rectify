@@ -2,12 +2,12 @@ import { View, Text, ActivityIndicator, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../utils/FirebaseConfig";
-import Intro from "../../components/BusinessDetail/Intro";
-import ActionButton from "../../components/BusinessDetail/ActionButton";
-import About from "@/components/BusinessDetail/About";
-import Reviews from "../../components/BusinessDetail/Reviews";
-import Price from "../../components/BusinessDetail/Price";
+import { db } from "@utils/FirebaseConfig";
+import Intro from "@components/BusinessDetail/Intro";
+import ActionButton from "@components/BusinessDetail/ActionButton";
+import About from "@components/BusinessDetail/About";
+import Reviews from "@components/BusinessDetail/Reviews";
+import Price from "@components/BusinessDetail/Price";
 
 export default function BusinessDetail() {
   const { businessid } = useLocalSearchParams();

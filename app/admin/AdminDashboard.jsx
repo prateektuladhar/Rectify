@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../../utils/FirebaseConfig";
+import { db } from "@utils/FirebaseConfig";
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);

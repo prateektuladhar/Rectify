@@ -1,8 +1,6 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import React from "react";
 
-import { db } from "../../utils/FirebaseConfig";
 import PopularBusinesscard from "./PopularBusinesscard";
 
 export default function PopularBusinessList({ popularBusinessList }) {
