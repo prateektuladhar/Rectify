@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/rectify.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.prateek.rectify"
